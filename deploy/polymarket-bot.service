@@ -1,0 +1,28 @@
+# ============================================================
+# systemd service — keeps the bot running after reboot
+# ============================================================
+# 1. Edit WorkingDirectory and User below
+# 2. Copy to: /etc/systemd/system/polymarket-bot.service
+# 3. systemctl daemon-reload
+# 4. systemctl enable polymarket-bot
+# 5. systemctl start polymarket-bot
+# 6. systemctl status polymarket-bot   ← check it's running
+# ============================================================
+
+[Unit]
+Description=Polymarket Arbitrage Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/polymarket-arb-bot
+ExecStart=/usr/bin/python3 server.py --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+StandardOutput=append:/root/polymarket-arb-bot/logs/service.log
+StandardError=append:/root/polymarket-arb-bot/logs/service.log
+EnvironmentFile=/root/polymarket-arb-bot/.env
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+# Secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Logs and state
+logs/
+*.log
+
+# Node
+node_modules/
+dashboard/dist/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store

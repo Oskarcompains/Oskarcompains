@@ -1,6 +1,60 @@
 # Polymarket Arbitrage Bot
 
-Automated arbitrage trading bot for [Polymarket](https://polymarket.com) built with Python and the official `py-clob-client` SDK.
+Automated arbitrage trading bot for [Polymarket](https://polymarket.com) with a **real-time web dashboard**.
+
+Built with Python (`py-clob-client` SDK) + FastAPI backend + React/Tailwind frontend.
+
+---
+
+## Dashboard
+
+Dark-themed live dashboard with:
+- Real-time P&L chart
+- Opportunity feed (WebSocket-powered)
+- Open positions table
+- Bot start/stop controls
+
+### Run locally
+
+```bash
+# 1. Install Python deps
+pip install -r requirements.txt
+
+# 2. Build the React frontend
+cd dashboard && npm install && npm run build && cd ..
+
+# 3. Start the server (serves bot API + dashboard)
+python server.py
+
+# Dashboard → http://localhost:8000
+```
+
+### Deploy to your domain
+
+```bash
+# On your server:
+git clone <repo> && cd Oskarcompains
+pip install -r requirements.txt
+cd dashboard && npm install && npm run build && cd ..
+
+# Run with systemd / pm2 / screen:
+python server.py --host 0.0.0.0 --port 80
+
+# Or behind nginx (recommended):
+# proxy_pass http://127.0.0.1:8000;
+```
+
+### Dev mode (hot reload)
+
+```bash
+# Terminal 1 — FastAPI backend
+python server.py --reload
+
+# Terminal 2 — Vite dev server (http://localhost:5173)
+cd dashboard && npm run dev
+```
+
+---
 
 ## Strategy
 

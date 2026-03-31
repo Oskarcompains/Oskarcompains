@@ -1,0 +1,40 @@
+bot:
+  # Interval in seconds between market scans
+  poll_interval: 5
+  # List of condition IDs to monitor (empty = monitor all active markets)
+  markets_to_monitor: []
+  # Dry run mode: log opportunities but do NOT place real orders
+  dry_run: true
+  # Maximum number of concurrent open arbitrage positions
+  max_open_positions: 5
+
+arbitrage:
+  # Minimum net profit % after fees to consider an opportunity valid
+  # Example: 0.02 = 2% minimum profit
+  min_profit_threshold: 0.02
+  # Maximum USD amount per single order leg
+  max_order_size: 100.0
+  # Polymarket taker fee rate (0.5%)
+  fee_rate: 0.005
+  # Minimum liquidity required on each side (USD) to attempt arbitrage
+  min_liquidity: 10.0
+
+risk:
+  # Maximum USD exposure per market
+  max_position_size: 200.0
+  # Maximum total USD exposure across all open positions
+  max_total_exposure: 1000.0
+  # Stop-loss threshold: close position if unrealized loss exceeds this %
+  stop_loss_pct: 0.15
+  # Minimum seconds between trades on the same market (cooldown)
+  trade_cooldown: 60
+  # Maximum number of failed orders before pausing the bot
+  max_consecutive_errors: 5
+
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  log_file: logs/bot.log
+  # Max log file size in MB before rotation
+  max_file_size_mb: 10
+  # Number of rotated log files to keep
+  backup_count: 5
